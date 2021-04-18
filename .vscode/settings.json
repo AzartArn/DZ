@@ -1,0 +1,10 @@
+{
+    "cmake.configureOnOpen": false
+
+    "linters": {
+        // The name of the linter you installed
+            "pycodestyle": {
+                "ignore": ["W191"]
+            }
+        }
+}
