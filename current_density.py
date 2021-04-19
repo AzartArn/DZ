@@ -5,6 +5,22 @@ A2 = -0.125
 B2 = 2
 
 
+def lists(bit1, bit2):
+    Alist = []
+    b1 = list(bit1)
+    b2 = list(bit2)
+    b1.reverse()
+    b2.reverse()
+    for i in range(16):
+        Alist.append(0)
+    for i in range(len(b1)):
+        Alist[i] = b1[i]
+    for i in range(len(b2)):
+        Alist[i+5] = b2[i]
+    Alist.reverse()
+    return Alist
+
+
 def destobin(x):
     if x == 0:
         return '0'
@@ -27,13 +43,15 @@ def kodek():
     bit2 = destobin(int(var.get())+44)
     if d < 4.2 or d > 7.8:
         sel1 = "Аварийное состояние"
-        sel2 = str(bit1)
+        sel2 = bit1
         sel3 = "00000"
+        bit2 = "00000"
         colors = "red3"
     elif d > 5.3 and d < 6.7:
         sel1 = "В пределах нормы"
-        sel2 = str(bit1)
+        sel2 = bit1
         sel3 = "00000"
+        bit2 = "00000"
         colors = "green4"
     elif d > 4.1 and d < 5.4:
         sel1 = "Напряжение увеличено \nИсполяющие устройство Блок питания №"\
@@ -47,6 +65,10 @@ def kodek():
         sel2 = str(bit1)
         sel3 = str(bit2)
         colors = "CadetBlue3"
+    Alist = lists(bit1, bit2)
+    print(Alist)
+    lbl5.config(text='')
+    lbl5.config(text=Alist, bg="CadetBlue3")
     select(color=colors, sel1=sel1, sel2=sel3, sel3=sel2)
 
 
@@ -85,7 +107,10 @@ lbl3.grid(row=5, column=0, pady=5, padx=5)
 lbl4 = Label(top, bg="black", width=20, height=1)
 lbl4.grid(row=5, column=1, pady=5, padx=5)
 
+lbl5 = Label(top, bg="black", width=51, height=4)
+lbl5.grid(row=6, column=0, columnspan=2, pady=5, padx=5)
+
 lbl = Label(top, bg="black", width=51, height=4)
-lbl.grid(row=6, column=0, columnspan=2, pady=5, padx=5)
+lbl.grid(row=7, column=0, columnspan=2, pady=5, padx=5)
 
 top.mainloop()
